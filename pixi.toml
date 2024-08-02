@@ -12,7 +12,7 @@ depends-on = [ "init-ventus" ]
 outputs = ["$VENTUS_HOME/dependencies/rocket-chip/build.sc"]
 
 [tasks.init-ventus]
-cmd = 'git submodule update venus-gpgpu && sed -i -e "s/git@github.com:/https:\/\/github.com\//" -i $VENTUS_HOME/.gitmodules && touch $PIXI_PROJECT_ROOT/.init-ventus'
+cmd = 'git submodule update ventus-gpgpu && sed -i -e "s/git@github.com:/https:\/\/github.com\//" -i $VENTUS_HOME/.gitmodules && touch $PIXI_PROJECT_ROOT/.init-ventus'
 outputs = ["$PIXI_PROJECT_ROOT/.init-ventus"]
 
 [tasks.patch]
