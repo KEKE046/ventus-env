@@ -1,14 +1,26 @@
 name: Generate Firrtl and Verilog
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "ventus-gpgpu/**/*"
+      - "pixi.toml"
+      - ".github/workflows/gen-fir-verilog.yml"
 
 jobs:
   gen-fir-v:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - uses: prefix-dev/setup-pixi@v0.8.0
     - run: pixi run verilog
+    - run: |
+      gzip -9 ventus-gpgpu/GPGPU_top.fir
+      gzip -9 ventus-gpgpu/GPGPU_top.v
+      gzip -9 ventus-gpgpu/GPGPU_top.anno.json
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
