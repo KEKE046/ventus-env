@@ -12,8 +12,8 @@ depends-on = [ "fix-submodules" ]
 outputs = ["$VENTUS_HOME/dependencies/rocket-chip/build.sc"]
 
 [tasks.fix-submodules]
-cmd = 'sed -e "s/git@github.com:/https:\/\/github.com\//" -i $VENTUS_HOME/.gitmodules'
-outputs = ["$VENTUS_HOME/.gitmodules"]
+cmd = 'sed -i -e "s/git@github.com:/https:\/\/github.com\//" -i $VENTUS_HOME/.gitmodules && touch $PIXI_PROJECT_ROOT/.fix-submodules'
+outputs = ["$PIXI_PROJECT_ROOT/.fix-submodules"]
 
 [tasks.patch]
 cmd = "make -C $VENTUS_HOME patch"
