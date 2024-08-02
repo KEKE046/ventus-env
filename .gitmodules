@@ -1,0 +1,3 @@
+[submodule "ventus-gpgpu"]
+	path = ventus-gpgpu
+	url = https://github.com/THU-DSP-LAB/ventus-gpgpu.git

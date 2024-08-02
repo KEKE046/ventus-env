@@ -1,0 +1,30 @@
+[project]
+name = "ventus-gpgpu"
+version = "0.1.0"
+description = "Add a short description here"
+authors = ["KEKE046 <zhoukexing@pku.edu.cn>"]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[tasks.init]
+cmd = "git -C $VENTUS_HOME submodule update --init --recursive"
+outputs = ["$VENTUS_HOME/dependencies/rocket-chip/build.sc"]
+
+[tasks.patch]
+cmd = "make -C $VENTUS_HOME patch"
+outputs = ["$VENTUS_HOME/dependencies/rocket-chip/src/main/scala/package.scala"]
+
+[tasks.verilog]
+cmd = "cd $VENTUS_HOME && mill ventus.run"
+depends-on = [ "setup-mill", "init", "patch" ]
+
+[tasks.setup-mill]
+cmd = "curl -L https://github.com/com-lihaoyi/mill/releases/download/$MILL_VERSION/$MILL_VERSION-assembly > $CONDA_PREFIX/bin/mill && chmod +x $CONDA_PREFIX/bin/mill"
+outputs = [ "$CONDA_PREFIX/bin/mill" ]
+
+[dependencies]
+openjdk = ">=11,<12"
+
+[activation.env]
+MILL_VERSION = "0.10.8"
+VENTUS_HOME="$PIXI_PROJECT_ROOT/ventus-gpgpu"
