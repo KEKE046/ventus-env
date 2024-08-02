@@ -21,7 +21,7 @@ outputs = ["$VENTUS_HOME/dependencies/rocket-chip/src/main/scala/package.scala"]
 
 [tasks.verilog]
 cmd = "cd $VENTUS_HOME && mill ventus.run"
-depends-on = [ "setup-mill", "init", "patch" ]
+depends-on = [ "init-ventus", "setup-mill", "init", "patch" ]
 
 [tasks.setup-mill]
 cmd = "curl -L https://github.com/com-lihaoyi/mill/releases/download/$MILL_VERSION/$MILL_VERSION-assembly > $CONDA_PREFIX/bin/mill && chmod +x $CONDA_PREFIX/bin/mill"
