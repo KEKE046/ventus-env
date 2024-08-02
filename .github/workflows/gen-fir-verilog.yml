@@ -1,4 +1,7 @@
 name: Generate Firrtl and Verilog
+on:
+  workflow_dispatch:
+
 jobs:
   gen-fir-v:
     runs-on: ubuntu-latest
