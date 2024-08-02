@@ -1,0 +1,14 @@
+name: Generate Firrtl and Verilog
+jobs:
+  gen-fir-v:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: prefix-dev/setup-pixi@v0.8.0
+    - run: pixi run verilog
+    - uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ./ventus-gpgpu/GPGPU_top.*
+        tag: ${{ github.ref }}
+        file_glob: true
