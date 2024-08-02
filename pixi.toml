@@ -8,12 +8,12 @@ platforms = ["linux-64"]
 
 [tasks.init]
 cmd = "git -C $VENTUS_HOME submodule update --init --recursive"
-depends-on = [ "init-vetus" ]
+depends-on = [ "init-ventus" ]
 outputs = ["$VENTUS_HOME/dependencies/rocket-chip/build.sc"]
 
-[tasks.init-vetus]
-cmd = 'git submodule update venus-gpgpu && sed -i -e "s/git@github.com:/https:\/\/github.com\//" -i $VENTUS_HOME/.gitmodules && touch $PIXI_PROJECT_ROOT/.init-vetus'
-outputs = ["$PIXI_PROJECT_ROOT/.init-vetus"]
+[tasks.init-ventus]
+cmd = 'git submodule update venus-gpgpu && sed -i -e "s/git@github.com:/https:\/\/github.com\//" -i $VENTUS_HOME/.gitmodules && touch $PIXI_PROJECT_ROOT/.init-ventus'
+outputs = ["$PIXI_PROJECT_ROOT/.init-ventus"]
 
 [tasks.patch]
 cmd = "make -C $VENTUS_HOME patch"
